@@ -1,43 +1,53 @@
-function lerSalarios(){
-    let listaSalarios = [];
-    for (let i = 0; i < 5; i++) {
-        
-        let salario = prompt("Informe o Salario: ");
-        let s = parseFloat(salario);
-        
-        listaSalarios.push(s);
+function lerNomesSalarios(nomes = [], salarios = []) {
+
+    let continuar = false;
+    let contador = 0;
+    do {
+        contador++;
+        let nome = prompt("Informe um Nome:");
+        while (isNaN(nome) === false || nome.trim() == '') {
+            alert("Nome Inválido");
+            nome = prompt("Informe um Nome novamente:");
         }
-        return listaSalarios;
-    }
-function lerNomes(){
-    let listaNomes = [];
-    mensagem = ""
-    for (let i = 0; i < 5; i++) {
-        
-        let nome = prompt("Informe o nome: ");
-        let n = parseFloat(nome);
-        
-        listaNomes.push(n);
-        while (i < 5) {
-            
+        nomes.push(nome);
+
+        let salario = prompt("Informe um Salário:");
+        while (isNaN(salario)) {
+            alert("Salário Inválido");
+            salario = prompt(`Informe o sálario de ${nome} novamente:`);
+        }
+        salarios.push(parseFloat(salario));
+
+        if (contador < 50) {
+            continuar = confirm("Deseja continuar o cadastro?");
+        } else {
+            continuar = false;
         }
 
-        }
-        return listaNomes
-    }    
-listaNomes = processar()
-function processar(listaSalarios){
-        let mensagem = "Salarios Líquidos: \n";
-     
-    for (let i = 0; i < listaSalarios.length; i++) {
-        
-        let liquido =  listaSalarios[i] - (listaSalarios[i] * (12/100));
-        
-        mensagem += "R$ " + liquido.toFixed(2) + "\n";
-    }
+    } while (continuar == true);
+
 }
-    resposta()    
-function resposta(listaNomes,listaSalarios,processar){
-       mensagem += `${listaNomes} ${listaSalarios} ${processar}`
+
+function exibirNomesSalarios(nomes = [], salarios = []) {
+    const tamanhoLista = salarios.length;
+    let mensagem = "";
+    for (let i = 0; i < tamanhoLista; i++) {
+        let inss = salarios[i] * (10/100);
+        let salarioLiquido = salarios[i] - inss;
+        mensagem += `
+        Nome: ${nomes[i]} <br/>
+        Salário Bruto: ${salarios[i].toFixed(2)} <br/>
+        Salário Líquido: ${salarioLiquido.toFixed(2)}<br/>
+        INSS: ${inss.toFixed(2)} <br/>
+        <br/><br/>
+        `;
     }
-    alert(mensagem);
+    document.write(mensagem);
+
+}
+
+let listaNomes = [];
+let listaSalarios = [];
+
+lerNomesSalarios(listaNomes, listaSalarios);
+exibirNomesSalarios(listaNomes, listaSalarios);

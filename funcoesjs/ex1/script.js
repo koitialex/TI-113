@@ -1,4 +1,4 @@
-/*let listaNumeros = Numeros();
+let listaNumeros = Numeros();
 let mensagem = "";
 
 function Numeros() {
@@ -40,35 +40,6 @@ function estruturaMensagem() {
 
     alert(mensagem);
 }
-*/
- 
-function contador() {
-    
-    let ListaNumero = [];
-    let n = "";
-    let mensagem = "";
-    
-    for (let i = 0; i < 5; i++) {
-        do {
-            n = parseInt(prompt(`${i + 1}-Digite um número`));
-            mensagem += `${n}  \n`;
-            mensagem += `O usuário digitou estes números : ${ListaNumero}`;
-
-            if (isNaN(n)) {
-                alert("Está inválido");
-            }
-            else if (n === "") {
-                alert("Está em branco, digite um número por favor.");
-            }
-
-        } while (isNaN(n) || n === "");
-        ListaNumero.push[n];
-
-    }
-    return mensagem;
-}
-mensagem = contador();
-alert(mensagem);
 
 
 
